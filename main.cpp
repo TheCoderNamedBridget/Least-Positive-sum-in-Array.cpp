@@ -12,8 +12,8 @@ using namespace std;
 //Partition code taken from my Lab 3 for Quick Select
 int partitionAscending( double a[], int start, int end)
 {
-    cout<<"end: "<<end;
-    cout<<"In partition ascending "<<endl;
+    // cout<<"end: "<<end;
+    // cout<<"In partition ascending "<<endl;
     for ( int i = 0; i < end; i++)
     {
         cout<<"a "<< a[i]<<endl;
@@ -48,22 +48,22 @@ int partitionAscending( double a[], int start, int end)
         }
         if ( goLeft && goRight && a[leftPivIndex] > piv && a[rightPivIndex] < piv )//if emlent on left and right need switching switch
         {
-            cout<<"double switch"<<endl;
-            cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
-            cout<<"leftPivIndex "<<leftPivIndex<<endl;
-            cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
-            cout<<"rightPivIndex "<<rightPivIndex<<endl;
+            // cout<<"double switch"<<endl;
+            // cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
+            // cout<<"leftPivIndex "<<leftPivIndex<<endl;
+            // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
+            // cout<<"rightPivIndex "<<rightPivIndex<<endl;
             double temp = a[leftPivIndex];
             a[leftPivIndex] = a[rightPivIndex];
             a[rightPivIndex] = temp;
         }//
         else if ( goRight && (a[rightPivIndex] < piv)  )//only switch right
         {
-            cout<<"right switch"<<endl;
-            cout<<"pivPlusOne a[midIndex + 1] "<<(a[midIndex + 1])<<endl;
-            cout<<"middle Index "<<midIndex<<endl;
-            cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
-            cout<<"rightPivIndex "<<rightPivIndex<<endl;
+            // cout<<"right switch"<<endl;
+            // cout<<"pivPlusOne a[midIndex + 1] "<<(a[midIndex + 1])<<endl;
+            // cout<<"middle Index "<<midIndex<<endl;
+            // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
+            // cout<<"rightPivIndex "<<rightPivIndex<<endl;
             
             double pivPlusOne = a[midIndex + 1];
             a[midIndex + 1] = a[rightPivIndex];
@@ -79,11 +79,11 @@ int partitionAscending( double a[], int start, int end)
         }
         else if ( goLeft && (a[leftPivIndex] > piv)  )//only switch left
         {
-            cout<<"left switch"<<endl;
-            cout<<"pivMinusOne a[midIndex - 1] "<<(a[midIndex - 1])<<endl;
-            cout<<"middle Index "<<midIndex<<endl;
-            cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
-            cout<<"leftPivIndex "<<leftPivIndex<<endl;
+            // cout<<"left switch"<<endl;
+            // cout<<"pivMinusOne a[midIndex - 1] "<<(a[midIndex - 1])<<endl;
+            // cout<<"middle Index "<<midIndex<<endl;
+            // cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
+            // cout<<"leftPivIndex "<<leftPivIndex<<endl;
             //switches element to left of piv with other left element <> piv
             double pivMinusOne = a[midIndex - 1];
             a[midIndex - 1] = a[leftPivIndex];
@@ -105,8 +105,8 @@ int partitionAscending( double a[], int start, int end)
 
 int partitionDescending( double a[], int start, int end)
 {
-    cout<<"end: "<<end;
-    cout<<"In partition descending "<<endl;
+    // cout<<"end: "<<end;
+    // cout<<"In partition descending "<<endl;
     for ( int i = 0; i < end; i++)
     {
         cout<<"a "<< a[i]<<endl;
@@ -141,22 +141,22 @@ int partitionDescending( double a[], int start, int end)
         }
         if ( goLeft && goRight && a[leftPivIndex] < piv && a[rightPivIndex] > piv )//if emlent on left and right need switching switch
         {
-            cout<<"double switch"<<endl;
-            cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
-            cout<<"leftPivIndex "<<leftPivIndex<<endl;
-            cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
-            cout<<"rightPivIndex "<<rightPivIndex<<endl;
+            // cout<<"double switch"<<endl;
+            // cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
+            // cout<<"leftPivIndex "<<leftPivIndex<<endl;
+            // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
+            // cout<<"rightPivIndex "<<rightPivIndex<<endl;
             double temp = a[leftPivIndex];
             a[leftPivIndex] = a[rightPivIndex];
             a[rightPivIndex] = temp;
         }//
         else if ( goRight && (a[rightPivIndex] > piv)  )//only switch right
         {
-            cout<<"right switch"<<endl;
-            cout<<"pivPlusOne a[midIndex + 1] "<<(a[midIndex + 1])<<endl;
-            cout<<"middle Index "<<midIndex<<endl;
-            cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
-            cout<<"rightPivIndex "<<rightPivIndex<<endl;
+            // cout<<"right switch"<<endl;
+            // cout<<"pivPlusOne a[midIndex + 1] "<<(a[midIndex + 1])<<endl;
+            // cout<<"middle Index "<<midIndex<<endl;
+            // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
+            // cout<<"rightPivIndex "<<rightPivIndex<<endl;
             
             double pivPlusOne = a[midIndex + 1];
             a[midIndex + 1] = a[rightPivIndex];
@@ -172,11 +172,11 @@ int partitionDescending( double a[], int start, int end)
         }
         else if ( goLeft && (a[leftPivIndex] < piv)  )//only switch left
         {
-            cout<<"left switch"<<endl;
-            cout<<"pivMinusOne a[midIndex - 1] "<<(a[midIndex - 1])<<endl;
-            cout<<"middle Index "<<midIndex<<endl;
-            cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
-            cout<<"leftPivIndex "<<leftPivIndex<<endl;
+            // cout<<"left switch"<<endl;
+            // cout<<"pivMinusOne a[midIndex - 1] "<<(a[midIndex - 1])<<endl;
+            // cout<<"middle Index "<<midIndex<<endl;
+            // cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
+            // cout<<"leftPivIndex "<<leftPivIndex<<endl;
             //switches element to left of piv with other left element <> piv
             double pivMinusOne = a[midIndex - 1];
             a[midIndex - 1] = a[leftPivIndex];
@@ -286,7 +286,7 @@ double MPSS( double a[], double sL[], double sR[], int size )
         //Formula to get sums
         //current node plus past node
         //sum for left
-        int sum = 0;
+        double sum = 0;
         for ( int i = (size / 2) - 1; i > -1; i -- )
         {
             sL[i] = sum + sL[i];
@@ -295,13 +295,27 @@ double MPSS( double a[], double sL[], double sR[], int size )
         }
         
         quickSortAscending( sL, 0, (size / 2) - 1 );
+        //{2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8}
+        
+        
+        //10, -12, 5.2, 3.6, -8}
+        //10, -2, 3.2, 6.8, -1.2
         
         //sum for right
-        int sum2 = 0;
+        // int sum2 = 0;
+        // for ( int i = (size / 2) - 1; i > -1; i -- )
+        // {
+        //     sR[i] = sum2 + sR[i];
+        //     cout<<"sR Sum "<<sR[i]<<endl;
+        //     sum2 = sR[i];
+        // }
+        
+        double sum2 = 0;
         for ( int i = 0; i < (size/2) ; i++ )
         {
+            //cout<<"sum2 "<<sum2<<" sR[i] "<<sR[i]<<endl;
             sR[i] = sum2 + sR[i];
-            cout<<"sR Sum2 "<<sR[i]<<endl;
+            //cout<<"sR Sum2 "<<sR[i]<<endl;
             sum2 = sR[i];
         }
         
@@ -450,9 +464,9 @@ int main()
     double c[size2] = {-34, 49, -58, 76, 29, -71, -54, 63 };
     //{2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
     //{2, -3, 1, 4, -6, 2, -3, 1, 4, -6};
-    double sL[size2/2];
-    double sR[size2/2];
-    minPosSum = MPSS( c, sL, sR, size2 );
+    double sL[size/2];
+    double sR[size/2];
+    minPosSum = MPSS( b, sL, sR, size );
     cout<<"MPSS "<<minPosSum<<endl;
     return 0;
 }
