@@ -10,7 +10,7 @@ Lab: Lab 6
 using namespace std;
 
 //Partition code taken from my Lab 3 for Quick Select
-int partitionAscending( int a[], int start, int end)
+int partitionAscending( double a[], int start, int end)
 {
     if ( start == end )
     {
@@ -23,7 +23,7 @@ int partitionAscending( int a[], int start, int end)
     bool goLeft = true;
     bool goRight = true;
     
-    int piv = a[pivIndex];
+    double piv = a[pivIndex];
     a[start] = a[midIndex];
     a[midIndex] = piv;
     int leftPivIndex = midIndex - 1;
@@ -43,18 +43,18 @@ int partitionAscending( int a[], int start, int end)
         if ( goLeft && goRight && a[leftPivIndex] > piv && a[rightPivIndex] < piv )//if emlent on left and right need switching switch
         {
             //cout<<"double switch"<<endl;
-            int temp = a[leftPivIndex];
+            double temp = a[leftPivIndex];
             a[leftPivIndex] = a[rightPivIndex];
             a[rightPivIndex] = temp;
         }
         else if ( goRight && (a[rightPivIndex] < piv) )//only switch right
         {
-            int pivPlusOne = a[midIndex + 1];
+            double pivPlusOne = a[midIndex + 1];
             a[midIndex + 1] = a[rightPivIndex];
             a[rightPivIndex] = pivPlusOne;
             
             //switches piv and element to the right of piv
-            int pivValue = a[midIndex];
+            double pivValue = a[midIndex];
             a[midIndex] = a[midIndex + 1];
             a[midIndex + 1] = pivValue;
             
@@ -64,12 +64,12 @@ int partitionAscending( int a[], int start, int end)
         else if ( goLeft && (a[leftPivIndex] > piv) )//only switch left
         {
             //switches element to left of piv with other left element <> piv
-            int pivMinusOne = a[midIndex - 1];
+            double pivMinusOne = a[midIndex - 1];
             a[midIndex - 1] = a[leftPivIndex];
             a[leftPivIndex] = pivMinusOne;
             
             //switches piv and element to the right of piv
-            int pivValue = a[midIndex];
+            double pivValue = a[midIndex];
             a[midIndex] = a[midIndex - 1];
             a[midIndex - 1] = pivValue;
             
@@ -82,7 +82,7 @@ int partitionAscending( int a[], int start, int end)
     return midIndex;
 }
 
-int partitionDescending( int a[], int start, int end)
+int partitionDescending( double a[], int start, int end)
 {
     // cout<<"end: "<<end;
     // cout<<"In partition descending "<<endl;
@@ -101,7 +101,7 @@ int partitionDescending( int a[], int start, int end)
     bool goLeft = true;
     bool goRight = true;
     
-    int piv = a[pivIndex];
+    double piv = a[pivIndex];
     a[start] = a[midIndex];
     a[midIndex] = piv;
     int leftPivIndex = midIndex - 1;
@@ -125,7 +125,7 @@ int partitionDescending( int a[], int start, int end)
             // cout<<"leftPivIndex "<<leftPivIndex<<endl;
             // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
             // cout<<"rightPivIndex "<<rightPivIndex<<endl;
-            int temp = a[leftPivIndex];
+            double temp = a[leftPivIndex];
             a[leftPivIndex] = a[rightPivIndex];
             a[rightPivIndex] = temp;
         }
@@ -136,12 +136,12 @@ int partitionDescending( int a[], int start, int end)
             // cout<<"middle Index "<<midIndex<<endl;
             // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
             // cout<<"rightPivIndex "<<rightPivIndex<<endl;
-            int pivPlusOne = a[midIndex + 1];
+            double pivPlusOne = a[midIndex + 1];
             a[midIndex + 1] = a[rightPivIndex];
             a[rightPivIndex] = pivPlusOne;
             
             //switches piv and element to the right of piv
-            int pivValue = a[midIndex];
+            double pivValue = a[midIndex];
             a[midIndex] = a[midIndex + 1];
             a[midIndex + 1] = pivValue;
             
@@ -156,12 +156,12 @@ int partitionDescending( int a[], int start, int end)
             // cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
             // cout<<"leftPivIndex "<<leftPivIndex<<endl;
             //switches element to left of piv with other left element <> piv
-            int pivMinusOne = a[midIndex - 1];
+            double pivMinusOne = a[midIndex - 1];
             a[midIndex - 1] = a[leftPivIndex];
             a[leftPivIndex] = pivMinusOne;
             
             //switches piv and element to the right of piv
-            int pivValue = a[midIndex];
+            double pivValue = a[midIndex];
             a[midIndex] = a[midIndex - 1];
             a[midIndex - 1] = pivValue;
             
@@ -174,7 +174,7 @@ int partitionDescending( int a[], int start, int end)
     return midIndex;
 }
 
-void quickSortAscending( int a[], int start, int end )
+void quickSortAscending( double a[], int start, int end )
 {
     if ( start < end )
     {
@@ -186,7 +186,7 @@ void quickSortAscending( int a[], int start, int end )
     }
 }
 
-void quickSortDescending( int a[], int start, int end )
+void quickSortDescending( double a[], int start, int end )
 {
     // cout<<"in sort descending "<<endl;
     // for ( int i = 0; i < end; i++)
@@ -206,7 +206,7 @@ void quickSortDescending( int a[], int start, int end )
 
 //sort sL in ascending order
 //sort sR in descending order
-int MPSS( int a[], int sL[], int sR[], int size )
+int MPSS( double a[], double sL[], double sR[], int size )
 {
     int itrL = 0;
     int itrR = 0;
@@ -240,65 +240,65 @@ int MPSS( int a[], int sL[], int sR[], int size )
             itrR++;
         }
     }
-    cout<<"Testing Original Values "<<endl;
-    if ( odd )
-    {
-        for ( int i = 0; i < (size/ 2) + 1; i++)
-        {
-            cout<<"sL "<< sL[i]<<endl;
-        }
-        quickSortAscending( sL, 0, (size / 2) + 1 );
-        for ( int i = 0; i < size/ 2; i++)
-        {
-            cout<<"sR "<< sR[i]<<endl;
-        }
-    }
-    else 
-    {
-        for ( int i = 0; i < (size/ 2) ; i++)
-        {
-            cout<<"sL "<< sL[i]<<endl;
-        }
-        quickSortAscending( sL, 0, size / 2 );
-        for ( int i = 0; i < size/ 2; i++)
-        {
-            cout<<"sR "<< sR[i]<<endl;
-        }
-    }
+    // cout<<"Testing Original Values "<<endl;
+    // if ( odd )
+    // {
+    //     for ( int i = 0; i < (size/ 2) + 1; i++)
+    //     {
+    //         cout<<"sL "<< sL[i]<<endl;
+    //     }
+    //     quickSortAscending( sL, 0, (size / 2) + 1 );
+    //     for ( int i = 0; i < size/ 2; i++)
+    //     {
+    //         cout<<"sR "<< sR[i]<<endl;
+    //     }
+    // }
+    // else 
+    // {
+    //     for ( int i = 0; i < (size/ 2) ; i++)
+    //     {
+    //         cout<<"sL "<< sL[i]<<endl;
+    //     }
+    //     quickSortAscending( sL, 0, size / 2 );
+    //     for ( int i = 0; i < size/ 2; i++)
+    //     {
+    //         cout<<"sR "<< sR[i]<<endl;
+    //     }
+    // }
     
-    cout<<"Testing Values after Sort"<<endl;
+    //cout<<"Testing Values after Sort"<<endl;
     
     quickSortDescending( sR, 0, size / 2 );
-    if ( odd )
-    {
-        for ( int i = 0; i < (size/ 2) + 1; i++)
-        {
-            cout<<"sL "<< sL[i]<<endl;
-        }
+    // if ( odd )
+    // {
+    //     for ( int i = 0; i < (size/ 2) + 1; i++)
+    //     {
+    //         cout<<"sL "<< sL[i]<<endl;
+    //     }
         
-        for ( int i = 0; i < size/ 2; i++)
-        {
-            cout<<"sR "<< sR[i]<<endl;
-        }
-    }
-    else 
-    {
-        for ( int i = 0; i < (size/ 2) ; i++)
-        {
-            cout<<"sL "<< sL[i]<<endl;
-        }
+    //     for ( int i = 0; i < size/ 2; i++)
+    //     {
+    //         cout<<"sR "<< sR[i]<<endl;
+    //     }
+    // }
+    // else 
+    // {
+    //     for ( int i = 0; i < (size/ 2) ; i++)
+    //     {
+    //         cout<<"sL "<< sL[i]<<endl;
+    //     }
         
-        for ( int i = 0; i < size/ 2; i++)
-        {
-            cout<<"sR "<< sR[i]<<endl;
-        }
-    }
+    //     for ( int i = 0; i < size/ 2; i++)
+    //     {
+    //         cout<<"sR "<< sR[i]<<endl;
+    //     }
+    // }
     //define 2 markers i for sL and j for sR
     //also define sumMin and sumCur
     int i = 0;
     int j = 0;
-    int sumMin = 100000;
-    int curSum = 0;
+    double sumMin = 100000;
+    double curSum = 0;
     bool stillMore = true;
     /*
     a. If s = SL(i) + SR(j) ≤ 0, then increment i.
@@ -343,54 +343,61 @@ int MPSS( int a[], int sL[], int sR[], int size )
 int main()
 {
     //Input code taken from my Lab 3 for Quick Select
-    int size = 0;
-    while ( size < 5)
-    {
-        cout<<"Enter a list great than 5: ";
-        cin >> size;
-    }
+    // int size = 0;
+    // while ( size < 5)
+    // {
+    //     cout<<"Enter a list great than 5: ";
+    //     cin >> size;
+    // }
     
-    int a[size];
+    // double a[size];
     
-    srand (time(NULL));
-    for ( int i = 0; i < size; i++ )
-    {
-        int posOrNeg = rand() % 2 + 1;
-        int posNum = rand() % 21;//0 - 20
-        int negNum = rand() % 21 -20;//-20 - -1
-        //cout<<"posOrNeg "<<posOrNeg<<endl;
-        //cout<<"posNum "<<posNum<<endl;
-        //cout<<"negNum "<<negNum<<endl;
-        if ( posOrNeg == 2 )//posOrNeg = 2 +> do pos
-        {
-            a[i] = posNum;
-        }
-        else//do neg
-        {
-            a[i] = negNum;
-        }
-    }
-    for ( int j = 0; j < size; j++)
-    {
-        cout<<"a[j] in main "<<a[j]<<endl;
-    }
+    // srand (time(NULL));
+    // for ( int i = 0; i < size; i++ )
+    // {
+    //     int posOrNeg = rand() % 2 + 1;
+    //     double posNum = rand() % 21;//0 - 20
+    //     double negNum = rand() % 21 -20;//-20 - -1
+    //     //cout<<"posOrNeg "<<posOrNeg<<endl;
+    //     //cout<<"posNum "<<posNum<<endl;
+    //     //cout<<"negNum "<<negNum<<endl;
+    //     if ( posOrNeg == 2 )//posOrNeg = 2 +> do pos
+    //     {
+    //         a[i] = posNum;
+    //     }
+    //     else//do neg
+    //     {
+    //         a[i] = negNum;
+    //     }
+    // }
+    // for ( int j = 0; j < size; j++)
+    // {
+    //     cout<<"a[j] in main "<<a[j]<<endl;
+    // }
+    // double minPosSum = 0;
+    
+    // if ( size % 2 == 0 )
+    // {
+    //     double sL[size/2];
+    //     double sR[size/2];
+    //     minPosSum = MPSS( a, sL, sR, size );
+    // }
+    // else
+    // {
+    //     double sL[(size/2) + 1];
+    //     double sR[size/2];
+    //     minPosSum = MPSS( a, sL, sR, size );
+    // }
+    
+    //cout<<"MPSS "<<minPosSum<<endl;
+    
     int minPosSum = 0;
-    
-    if ( size % 2 == 0 )
-    {
-        int sL[size/2];
-        int sR[size/2];
-        minPosSum = MPSS( a, sL, sR, size );
-    }
-    else
-    {
-        int sL[(size/2) + 1];
-        int sR[size/2];
-        minPosSum = MPSS( a, sL, sR, size );
-    }
-    
+    int size = 10;
+    double b[size] = {2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
+    double sL[size/2];
+    double sR[size/2];
+    minPosSum = MPSS( b, sL, sR, size );
     cout<<"MPSS "<<minPosSum<<endl;
-    
     return 0;
 }
 
