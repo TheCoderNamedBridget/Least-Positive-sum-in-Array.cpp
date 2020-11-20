@@ -228,7 +228,7 @@ void quickSortDescending( double a[], int start, int end )
 
 //sort sL in ascending order
 //sort sR in descending order
-int MPSS( double a[], double sL[], double sR[], int size )
+double MPSS( double a[], double sL[], double sR[], int size )
 {
     int itrL = 0;
     int itrR = 0;
@@ -321,8 +321,8 @@ int MPSS( double a[], double sL[], double sR[], int size )
     
     int i = 0;
     int j = 0;
-    double sumMin = 100000;
-    double curSum = 0;
+    double smin = 100000;
+    double s = 0;
     bool stillMore = true;
 
     /*
@@ -336,27 +336,29 @@ int MPSS( double a[], double sL[], double sR[], int size )
         cout<<"here " <<( i >= sizeL || j >= sizeR )<<endl;
         cout<<"i "<<i<<endl;
         cout<<"j "<<j<<endl;
-        cout<<"curSum "<<curSum<<endl;
+        cout<<"s "<<s<<endl;
+        cout<<"smin "<<smin<<endl;
         if ( i >= sizeL || j >= sizeR )//return MPSSmiddle = smin when the elements of SL or SR have been exhausted.
         {
-            if ( sumMin == 100000 )
+            if ( smin == 100000 )
             {
                 cout<<"List had no positive numbers "<<endl;
                 return -666;
             }
-            return sumMin;
+            return smin;
         }
-        curSum = sL[i] + sR[j];
-        if ( curSum <= 0 )//s = SL(i) + SR(j) ≤ 0, then increment i.
+        s = sL[i] + sR[j];
+        if ( s <= 0 )//s = SL(i) + SR(j) ≤ 0, then increment i.
         {
             i++;
         }
-        else if ( curSum <= sumMin )//if s < smin, then set smin = s, and increment j,
+        else if ( s < smin  )//if s < smin, then set smin = s, and increment j,
         {
-            sumMin = curSum;
+            cout<<"sumMin "<<smin<<endl;
+            smin = s;
             j++;
         }
-        else if ( curSum > sumMin )//we have s > smin, in which case we increment j.
+        else if ( s > smin )//we have s > smin, in which case we increment j.
         {
             j++;
         }
@@ -416,9 +418,9 @@ int main()
     
     //cout<<"MPSS "<<minPosSum<<endl;
     
-    int minPosSum = 0;
+    double minPosSum = 0;
     int size = 10;
-    double b[size] = {2, -3, 1, 4, -6, 2, -3, 1, 4, -6};
+    double b[size] = {2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
     //{2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
     //{2, -3, 1, 4, -6, 2, -3, 1, 4, -6};
     double sL[size/2];
