@@ -84,12 +84,12 @@ int partitionAscending( int a[], int start, int end)
 
 int partitionDescending( int a[], int start, int end)
 {
-    cout<<"end: "<<end;
-    cout<<"In partition descending "<<endl;
-    for ( int i = 0; i < end; i++)
-    {
-        cout<<"a "<< a[i]<<endl;
-    }
+    // cout<<"end: "<<end;
+    // cout<<"In partition descending "<<endl;
+    // for ( int i = 0; i < end; i++)
+    // {
+    //     cout<<"a "<< a[i]<<endl;
+    // }
     if ( start == end )
     {
         return start;
@@ -118,20 +118,24 @@ int partitionDescending( int a[], int start, int end)
             //do stuff for left side
             goRight = false;
         }
-        if ( goLeft && goRight && a[leftPivIndex] < piv && a[rightPivIndex] > piv )//if emlent on left and right need switching switch
+        if ( goLeft && goRight && a[leftPivIndex] < piv && a[rightPivIndex] > piv && a[rightPivIndex] < 21 )//if emlent on left and right need switching switch
         {
-            cout<<"double switch"<<endl;
+            // cout<<"double switch"<<endl;
+            // cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
+            // cout<<"leftPivIndex "<<leftPivIndex<<endl;
+            // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
+            // cout<<"rightPivIndex "<<rightPivIndex<<endl;
             int temp = a[leftPivIndex];
             a[leftPivIndex] = a[rightPivIndex];
             a[rightPivIndex] = temp;
         }
         else if ( goRight && (a[rightPivIndex] > piv) && a[rightPivIndex] < 21 )//only switch right
         {
-            cout<<"right switch"<<endl;
-            cout<<"pivPlusOne a[midIndex + 1] "<<(a[midIndex + 1])<<endl;
-            cout<<"middle Index "<<midIndex<<endl;
-            cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
-            cout<<"rightPivIndex "<<rightPivIndex<<endl;
+            // cout<<"right switch"<<endl;
+            // cout<<"pivPlusOne a[midIndex + 1] "<<(a[midIndex + 1])<<endl;
+            // cout<<"middle Index "<<midIndex<<endl;
+            // cout<<"a[rightPivIndex] "<<(a[rightPivIndex])<<endl;
+            // cout<<"rightPivIndex "<<rightPivIndex<<endl;
             int pivPlusOne = a[midIndex + 1];
             a[midIndex + 1] = a[rightPivIndex];
             a[rightPivIndex] = pivPlusOne;
@@ -144,13 +148,13 @@ int partitionDescending( int a[], int start, int end)
             midIndex++;
             
         }
-        else if ( goLeft && (a[leftPivIndex] < piv) )//only switch left
+        else if ( goLeft && (a[leftPivIndex] < piv) && a[leftPivIndex] < 21 )//only switch left
         {
-            cout<<"left switch"<<endl;
-            cout<<"pivMinusOne a[midIndex - 1] "<<(a[midIndex - 1])<<endl;
-            cout<<"middle Index "<<midIndex<<endl;
-            cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
-            cout<<"leftPivIndex "<<leftPivIndex<<endl;
+            // cout<<"left switch"<<endl;
+            // cout<<"pivMinusOne a[midIndex - 1] "<<(a[midIndex - 1])<<endl;
+            // cout<<"middle Index "<<midIndex<<endl;
+            // cout<<"a[leftPivIndex] "<<(a[leftPivIndex])<<endl;
+            // cout<<"leftPivIndex "<<leftPivIndex<<endl;
             //switches element to left of piv with other left element <> piv
             int pivMinusOne = a[midIndex - 1];
             a[midIndex - 1] = a[leftPivIndex];
@@ -202,15 +206,24 @@ void quickSortDescending( int a[], int start, int end )
 
 //sort sL in ascending order
 //sort sR in descending order
-void divideArray( int a[], int sL[], int sR[], int size )
+int MPSS( int a[], int sL[], int sR[], int size )
 {
     int itrL = 0;
     int itrR = 0;
+    int sizeL;
+    int sizeR;
     bool odd = false;
     if ( size % 2 != 0 )
     {
+        sizeL = (size /2 ) + 1;
+        
         odd = true;
     }
+    else
+    {
+        sizeL = size /2 ;
+    }
+    sizeR = size / 2;
     //split a into 2 subarrays 
     for ( int i = 0; i < size; i++ )
     {
@@ -280,7 +293,50 @@ void divideArray( int a[], int sL[], int sR[], int size )
             cout<<"sR "<< sR[i]<<endl;
         }
     }
-    
+    //define 2 markers i for sL and j for sR
+    //also define sumMin and sumCur
+    int i = 0;
+    int j = 0;
+    int sumMin = 100000;
+    int curSum = 0;
+    bool stillMore = true;
+    /*
+    a. If s = SL(i) + SR(j) ≤ 0, then increment i.
+    b. Else if s < smin, then set smin = s, and increment j,
+    c. Otherwise, we have s > smin, in which case we increment j.
+    d. Set MPSSmiddle = smin when the elements of SL or SR have been exhausted.
+    */
+    while ( stillMore )
+    {
+        cout<<"here " <<( i >= sizeL || j >= sizeR )<<endl;
+        cout<<"i "<<i<<endl;
+        cout<<"j "<<j<<endl;
+        cout<<"curSum "<<curSum<<endl;
+        if ( i >= sizeL || j >= sizeR )//return MPSSmiddle = smin when the elements of SL or SR have been exhausted.
+        {
+            if ( sumMin == 100000 )
+            {
+                cout<<"List had no positive numbers "<<endl;
+                return -666;
+            }
+            return sumMin;
+        }
+        curSum = sL[i] + sR[j];
+        if ( curSum <= 0 )//s = SL(i) + SR(j) ≤ 0, then increment i.
+        {
+            i++;
+        }
+        else if ( curSum <= sumMin )//if s < smin, then set smin = s, and increment j,
+        {
+            sumMin = curSum;
+            j++;
+        }
+        else if ( curSum > sumMin )//we have s > smin, in which case we increment j.
+        {
+            j++;
+        }
+        
+    }
 }
 
 
@@ -288,9 +344,9 @@ int main()
 {
     //Input code taken from my Lab 3 for Quick Select
     int size = 0;
-    while ( size < 3)
+    while ( size < 5)
     {
-        cout<<"Enter a list great than 3: ";
+        cout<<"Enter a list great than 5: ";
         cin >> size;
     }
     
@@ -318,21 +374,21 @@ int main()
     {
         cout<<"a[j] in main "<<a[j]<<endl;
     }
-    
+    int minPosSum = 0;
     if ( size % 2 == 0 )
     {
         int sL[size/2];
         int sR[size/2];
-        divideArray( a, sL, sR, size );
+        minPosSum = MPSS( a, sL, sR, size );
     }
     else
     {
         int sL[(size/2) + 1];
         int sR[size/2];
-        divideArray( a, sL, sR, size );
+        minPosSum = MPSS( a, sL, sR, size );
     }
     
-    
+    cout<<"MPSS "<<minPosSum<<endl;
     
     return 0;
 }
