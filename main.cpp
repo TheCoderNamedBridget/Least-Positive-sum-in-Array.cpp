@@ -13,7 +13,7 @@ using namespace std;
 int partitionAscending( double a[], int start, int end)
 {
     cout<<"end: "<<end;
-    cout<<"In partition descending "<<endl;
+    cout<<"In partition ascending "<<endl;
     for ( int i = 0; i < end; i++)
     {
         cout<<"a "<< a[i]<<endl;
@@ -134,7 +134,7 @@ int partitionDescending( double a[], int start, int end)
             //do stuff for left side
             goLeft = false;
         }
-        if ( rightPivIndex >= end )
+        if ( rightPivIndex > end )
         {
             //do stuff for left side
             goRight = false;
@@ -149,7 +149,7 @@ int partitionDescending( double a[], int start, int end)
             double temp = a[leftPivIndex];
             a[leftPivIndex] = a[rightPivIndex];
             a[rightPivIndex] = temp;
-        }
+        }//
         else if ( goRight && (a[rightPivIndex] > piv)  )//only switch right
         {
             cout<<"right switch"<<endl;
@@ -167,7 +167,7 @@ int partitionDescending( double a[], int start, int end)
             a[midIndex] = a[midIndex + 1];
             a[midIndex + 1] = pivValue;
             
-            //midIndex++;
+            midIndex++;
             
         }
         else if ( goLeft && (a[leftPivIndex] < piv)  )//only switch left
@@ -187,7 +187,7 @@ int partitionDescending( double a[], int start, int end)
             a[midIndex] = a[midIndex - 1];
             a[midIndex - 1] = pivValue;
             
-            //midIndex--;
+            midIndex--;
         }
         leftPivIndex --;
         rightPivIndex ++;
@@ -290,7 +290,7 @@ int MPSS( double a[], double sL[], double sR[], int size )
     
     cout<<"Testing Values after Sort"<<endl;
     
-    partitionDescending( sR, 0, (size / 2) - 1 );
+    quickSortDescending( sR, 0, (size / 2) - 1 );
     if ( odd )
     {
         for ( int i = 0; i < (size/ 2) + 1; i++)
@@ -324,44 +324,44 @@ int MPSS( double a[], double sL[], double sR[], int size )
     double sumMin = 100000;
     double curSum = 0;
     bool stillMore = true;
-    return 0;
+
     /*
     a. If s = SL(i) + SR(j) ≤ 0, then increment i.
     b. Else if s < smin, then set smin = s, and increment j,
     c. Otherwise, we have s > smin, in which case we increment j.
     d. Set MPSSmiddle = smin when the elements of SL or SR have been exhausted.
     */
-    // while ( stillMore )
-    // {
-    //     cout<<"here " <<( i >= sizeL || j >= sizeR )<<endl;
-    //     cout<<"i "<<i<<endl;
-    //     cout<<"j "<<j<<endl;
-    //     cout<<"curSum "<<curSum<<endl;
-    //     if ( i >= sizeL || j >= sizeR )//return MPSSmiddle = smin when the elements of SL or SR have been exhausted.
-    //     {
-    //         if ( sumMin == 100000 )
-    //         {
-    //             cout<<"List had no positive numbers "<<endl;
-    //             return -666;
-    //         }
-    //         return sumMin;
-    //     }
-    //     curSum = sL[i] + sR[j];
-    //     if ( curSum <= 0 )//s = SL(i) + SR(j) ≤ 0, then increment i.
-    //     {
-    //         i++;
-    //     }
-    //     else if ( curSum <= sumMin )//if s < smin, then set smin = s, and increment j,
-    //     {
-    //         sumMin = curSum;
-    //         j++;
-    //     }
-    //     else if ( curSum > sumMin )//we have s > smin, in which case we increment j.
-    //     {
-    //         j++;
-    //     }
+    while ( stillMore )
+    {
+        cout<<"here " <<( i >= sizeL || j >= sizeR )<<endl;
+        cout<<"i "<<i<<endl;
+        cout<<"j "<<j<<endl;
+        cout<<"curSum "<<curSum<<endl;
+        if ( i >= sizeL || j >= sizeR )//return MPSSmiddle = smin when the elements of SL or SR have been exhausted.
+        {
+            if ( sumMin == 100000 )
+            {
+                cout<<"List had no positive numbers "<<endl;
+                return -666;
+            }
+            return sumMin;
+        }
+        curSum = sL[i] + sR[j];
+        if ( curSum <= 0 )//s = SL(i) + SR(j) ≤ 0, then increment i.
+        {
+            i++;
+        }
+        else if ( curSum <= sumMin )//if s < smin, then set smin = s, and increment j,
+        {
+            sumMin = curSum;
+            j++;
+        }
+        else if ( curSum > sumMin )//we have s > smin, in which case we increment j.
+        {
+            j++;
+        }
         
-    // }
+    }
 }
 
 
@@ -418,8 +418,9 @@ int main()
     
     int minPosSum = 0;
     int size = 10;
-    double b[size] = {2, -3, 1, 4, -6, 2, -3, 1, 4, -6,};
+    double b[size] = {2, -3, 1, 4, -6, 2, -3, 1, 4, -6};
     //{2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
+    //{2, -3, 1, 4, -6, 2, -3, 1, 4, -6};
     double sL[size/2];
     double sR[size/2];
     minPosSum = MPSS( b, sL, sR, size );
