@@ -375,6 +375,7 @@ int main()
         cout<<"a[j] in main "<<a[j]<<endl;
     }
     int minPosSum = 0;
+    
     if ( size % 2 == 0 )
     {
         int sL[size/2];
@@ -392,4 +393,24 @@ int main()
     
     return 0;
 }
+
+
+//Testing Cases
+    //All neg even num passed
+    //int bn[12] = { -3, -2, -8, -12, -20, -1, -5, -9, -1, -4, -2, -18 };
+    //int size = 12;
+    //All pos even num 
+    //int bp[12] = { 3, 2, 8, 12, 20, 1, 5, 9, 1, 4, 2, 18 };
+    
+    //Half neg half pos passed
+    //int bpn[12] = { 4, -2, 8, 12, -20, 2, 5, -9, 1, 4, 2, -18 };
+    
+    //all 0 passed
+    //int z[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    
+    //all neg one 0 passed
+    //int bnz[12] = { -3, -2, -8, -12, -20, -1, 0, -9, -1, -4, -2, -18 };
+    
+    //all pos one 0 passed
+    //int bpz[12] = { 9, 0, 8, 12, 20, 20, 5, 9, 9, 4, 9, 18 };
 
