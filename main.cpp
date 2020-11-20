@@ -245,6 +245,7 @@ double MPSS( double a[], double sL[], double sR[], int size )
     {
         sizeL = size /2 ;
     }
+    
     sizeR = size / 2;
     //split a into 2 subarrays 
     for ( int i = 0; i < size; i++ )
@@ -277,16 +278,39 @@ double MPSS( double a[], double sL[], double sR[], int size )
     }
     else 
     {
-        for ( int i = 0; i < (size/ 2) ; i++)
+        // need to compute the sums
+        //USE the test case from class disc
+        //For sL go from middle to start 
+        //sL = -34, 49, -58, 76
+        //76, 18, 67, 33
+        //Formula to get sums
+        //current node plus past node
+        //sum for left
+        int sum = 0;
+        for ( int i = (size / 2) - 1; i > -1; i -- )
         {
-            cout<<"sL "<< sL[i]<<endl;
+            sL[i] = sum + sL[i];
+            cout<<"sl Sum "<<sL[i]<<endl;
+            sum = sL[i];
         }
+        
         quickSortAscending( sL, 0, (size / 2) - 1 );
-        for ( int i = 0; i < size/ 2; i++)
+        
+        //sum for right
+        int sum2 = 0;
+        for ( int i = 0; i < (size/2) ; i++ )
         {
-            cout<<"sR "<< sR[i]<<endl;
+            sR[i] = sum2 + sR[i];
+            cout<<"sR Sum2 "<<sR[i]<<endl;
+            sum2 = sR[i];
         }
+        
     }
+    
+    
+    
+    
+    
     
     cout<<"Testing Values after Sort"<<endl;
     
@@ -331,7 +355,7 @@ double MPSS( double a[], double sL[], double sR[], int size )
     c. Otherwise, we have s > smin, in which case we increment j.
     d. Set MPSSmiddle = smin when the elements of SL or SR have been exhausted.
     */
-    while ( stillMore )
+    while ( i <= sizeL && j <= sizeR )
     {
         cout<<"here " <<( i >= sizeL || j >= sizeR )<<endl;
         cout<<"i "<<i<<endl;
@@ -348,6 +372,7 @@ double MPSS( double a[], double sL[], double sR[], int size )
             return smin;
         }
         s = sL[i] + sR[j];
+        
         if ( s <= 0 )//s = SL(i) + SR(j) ≤ 0, then increment i.
         {
             i++;
@@ -358,7 +383,7 @@ double MPSS( double a[], double sL[], double sR[], int size )
             smin = s;
             j++;
         }
-        else if ( s > smin )//we have s > smin, in which case we increment j.
+        else//we have s > smin, in which case we increment j.
         {
             j++;
         }
@@ -420,12 +445,14 @@ int main()
     
     double minPosSum = 0;
     int size = 10;
+    int size2 = 8;
     double b[size] = {2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
+    double c[size2] = {-34, 49, -58, 76, 29, -71, -54, 63 };
     //{2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
     //{2, -3, 1, 4, -6, 2, -3, 1, 4, -6};
-    double sL[size/2];
-    double sR[size/2];
-    minPosSum = MPSS( b, sL, sR, size );
+    double sL[size2/2];
+    double sR[size2/2];
+    minPosSum = MPSS( c, sL, sR, size2 );
     cout<<"MPSS "<<minPosSum<<endl;
     return 0;
 }
@@ -449,4 +476,6 @@ int main()
     
     //all pos one 0 passed
     //int bpz[12] = { 9, 0, 8, 12, 20, 20, 5, 9, 9, 4, 9, 18 };
+
+
 
